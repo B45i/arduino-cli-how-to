@@ -1,4 +1,4 @@
-# Arduino CLI on windows 10
+# Using Arduino CLI on windows 10
 
 ## Install the cli
 
@@ -23,3 +23,8 @@
 
 - You should get an output similar to this:
   ![cli-test](./img/cli-test.png)
+
+## Create a new sketch
+
+New sketch can be created in current folder by the command:
+`arduino-cli sketch new MyFirstSketch`
