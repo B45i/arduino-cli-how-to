@@ -96,6 +96,75 @@ and you will get output like
 
   Then run the command: `arduino-cli core install arduino:avr`, which will install missing platform.
 
+- To list all the supported boards and its FQBN in you machine use command:
+
+`arduino-cli board listall`
+
+> \$ arduino-cli board listall
+> Board Name FQBN
+> 4D Systems gen4 IoD Range esp8266:esp8266:gen4iod
+> ATtiny13 MicroCore:avr:attiny13
+> Adafruit Circuit Playground arduino:avr:circuitplay32u4cat
+> Adafruit Feather HUZZAH ESP8266 esp8266:esp8266:huzzah
+> Amperka WiFi Slot esp8266:esp8266:wifi_slot
+> Arduino esp8266:esp8266:arduino-esp8266
+> Arduino BT arduino:avr:bt
+> Arduino Duemilanove or Diecimila arduino:avr:diecimila
+> Arduino Esplora arduino:avr:esplora
+> Arduino Ethernet arduino:avr:ethernet
+> Arduino Fio arduino:avr:fio
+> Arduino Gemma arduino:avr:gemma
+> Arduino Industrial 101 arduino:avr:chiwawa
+> Arduino Leonardo arduino:avr:leonardo
+> Arduino Leonardo ETH arduino:avr:leonardoeth
+> Arduino Mega ADK arduino:avr:megaADK
+> Arduino Mega or Mega 2560 arduino:avr:mega
+> Arduino Micro arduino:avr:micro
+> Arduino Mini arduino:avr:mini
+> Arduino NG or older arduino:avr:atmegang
+> Arduino Nano arduino:avr:nano
+> Arduino Nano Every arduino:megaavr:nona4809
+> Arduino Pro or Pro Mini arduino:avr:pro
+> Arduino Robot Control arduino:avr:robotControl
+> Arduino Robot Motor arduino:avr:robotMotor
+> Arduino Uno arduino:avr:uno
+> Arduino Uno WiFi arduino:avr:unowifi
+> Arduino Uno WiFi Rev2 arduino:megaavr:uno2018
+> Arduino Yún arduino:avr:yun
+> Arduino Yún Mini arduino:avr:yunmini
+> DOIT ESP-Mx DevKit (ESP8285) esp8266:esp8266:espmxdevkit
+> Digistump Oak esp8266:esp8266:oak
+> ESPDuino (ESP-13 Module) esp8266:esp8266:espduino
+> ESPectro Core esp8266:esp8266:espectro
+> ESPino (ESP-12 Module) esp8266:esp8266:espino
+> ESPresso Lite 1.0 esp8266:esp8266:espresso_lite_v1
+> ESPresso Lite 2.0 esp8266:esp8266:espresso_lite_v2
+> Generic ESP8266 Module esp8266:esp8266:generic
+> Generic ESP8285 Module esp8266:esp8266:esp8285
+> ITEAD Sonoff esp8266:esp8266:sonoff
+> Invent One esp8266:esp8266:inventone
+> LOLIN(WEMOS) D1 R2 & mini esp8266:esp8266:d1_mini
+> LOLIN(WEMOS) D1 mini Lite esp8266:esp8266:d1_mini_lite
+> LOLIN(WEMOS) D1 mini Pro esp8266:esp8266:d1_mini_pro
+> LilyPad Arduino arduino:avr:lilypad
+> LilyPad Arduino USB arduino:avr:LilyPadUSB
+> Linino One arduino:avr:one
+> NodeMCU 0.9 (ESP-12 Module) esp8266:esp8266:nodemcu
+> NodeMCU 1.0 (ESP-12E Module) esp8266:esp8266:nodemcuv2
+> Olimex MOD-WIFI-ESP8266(-DEV) esp8266:esp8266:modwifi
+> Phoenix 1.0 esp8266:esp8266:phoenix_v1
+> Phoenix 2.0 esp8266:esp8266:phoenix_v2
+> Seeed Wio Link esp8266:esp8266:wiolink
+> SparkFun Blynk Board esp8266:esp8266:blynk
+> SparkFun ESP8266 Thing esp8266:esp8266:thing
+> SparkFun ESP8266 Thing Dev esp8266:esp8266:thingdev
+> SweetPea ESP-210 esp8266:esp8266:esp210
+> ThaiEasyElec's ESPino esp8266:esp8266:espinotee
+> WeMos D1 R1 esp8266:esp8266:d1
+> WiFiduino esp8266:esp8266:wifiduino
+> WifInfo esp8266:esp8266:wifinfo
+> XinaBox CW01 esp8266:esp8266:cw01
+
 ### Upload the sketch
 
 - Use the command:
@@ -104,3 +173,69 @@ and you will get output like
 - To compile sketch called `cli-blink` for `Arduino Nano` connected in Port `COM3` run the following command:
 
   `arduino-cli upload -p COM3 --fqbn arduino:avr:nano cli-blink`
+
+## Install 3rd party cores.
+
+- You can use `arduino-cli` to compile and upload code to non AVR boards as well such as `ESP8266` and `ESP32`.
+
+- For this, we need to add the additional package indexes in the Arduino CLI configuration file.
+
+- Create a configuration file if it doesn't exist by the command:
+  `arduino-cli config init`
+
+> \$ arduino-cli config init
+> Config file written to: C:\Users\B45i\AppData\Local\Arduino15\arduino-cli.yaml
+
+- Open the configuration file in any editor and add new board manger url to `board_manager > additional_urls`.
+
+- To add ESP8266 with URL: `https://arduino.esp8266.com/stable/package_esp8266com_index.json`,
+  Edit the `yaml` file like this:
+
+```yaml
+board_manager:
+  additional_urls:
+    [https://arduino.esp8266.com/stable/package_esp8266com_index.json]
+```
+
+- now update the core by command:
+  `arduino-cli core update-index`
+
+> \$ arduino-cli core update-index
+> Updating index: package_index.json downloaded
+> Updating index: package_esp8266com_index.json downloaded
+
+- If you do `arduino-cli core search esp8266` you can see esp8266 listed.
+
+- Compile code for nodeMCU:
+
+> \$ arduino-cli compile --fqbn esp8266:esp8266:nodemcuv2 cli-blink
+> Executable segment sizes:
+> IROM : 227612 - code in flash (default or ICACHE_FLASH_ATTR)
+> IRAM : 26776 / 32768 - code in IRAM (ICACHE_RAM_ATTR, ISRs...)
+> DATA : 1252 ) - initialized variables (global, static) in RAM/HEAP
+> RODATA : 672 ) / 81920 - constants (global, static) in RAM/HEAP
+> BSS : 24880 ) - zeroed variables (global, static) in RAM/HEAP
+> Sketch uses 256312 bytes (24%) of program storage space. Maximum is 1044464 bytes.
+> Global variables use 26804 bytes (32%) of dynamic memory, leaving 55116 bytes for local variables. Maximum is 81920 bytes.
+
+- Upload to nodeMCU connected on `COM4`:
+
+> \$ arduino-cli upload -p COM4 --fqbn esp8266:esp8266:nodemcuv2 cli-blink
+> No new serial port detected.
+> esptool.py v2.8
+> Serial port COM4
+> Connecting....
+> Chip is ESP8266EX
+> Features: WiFi
+> Crystal is 26MHz
+> MAC: 50:02:91:dc:bf:05
+> Uploading stub...
+> Running stub...
+> Stub running...
+> Configuring flash size...
+> Auto-detected Flash size: 4MB
+> Compressed 260464 bytes to 190651...
+> Wrote 260464 bytes (190651 compressed) at 0x00000000 in 17.7 seconds (effective 118.0 kbit/s)...
+> Hash of data verified.
+> Leaving...
+> Hard resetting via RTS pin...
