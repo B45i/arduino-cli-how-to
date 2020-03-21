@@ -115,7 +115,7 @@ Global variables use 9 bytes (0%) of dynamic memory, leaving 2039 bytes for loca
 
 `arduino-cli upload -p COM3 --fqbn arduino:avr:nano cli-blink`
 
-## Install 3rd party cores.
+## Install 3rd party cores
 
 - You can use `arduino-cli` to compile and upload code to non AVR boards as well such as `ESP8266` and `ESP32`.
 
@@ -159,3 +159,35 @@ Updating index: package_esp8266com_index.json downloaded
 - Upload to nodeMCU connected on `COM4`:
 
 `arduino-cli upload -p COM4 --fqbn esp8266:esp8266:nodemcuv2 cli-blink`
+
+## Install libraries
+
+- You can search for additional libraries by:
+  `arduino-cli lib search LibraryName`
+
+```bash
+$ arduino-cli lib search wifimanager
+Name: "WiFiManager"
+  Author: tzapu
+  Maintainer: tzapu
+  Sentence: ESP8266 WiFi Connection manager with fallback web configuration portal
+  Paragraph: Library for configuring ESP8266 modules WiFi credentials at runtime.
+  Website: https://github.com/tzapu/WiFiManager.git
+  Category: Communication
+  Architecture: esp8266
+  Types: Contributed
+  Versions: [0.5.0, 0.6.0, 0.7.0, 0.8.0, 0.9.0, 0.10.0, 0.11.0, 0.12.0, 0.13.0, 0.14.0, 0.15.0-beta, 0.15.0]
+```
+
+- Install the library by:
+
+`arduino-cli lib install WiFiManager`
+
+```bash
+$ arduino-cli lib install WiFiManager
+WiFiManager depends on WiFiManager@0.15.0
+Downloading WiFiManager@0.15.0...
+WiFiManager@0.15.0 downloaded
+Installing WiFiManager@0.15.0...
+Installed WiFiManager@0.15.0
+```
