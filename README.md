@@ -5,9 +5,9 @@ One software that I use very often but absolutely hate is the Arduino IDE.
 The UI is simple and non-intimidating, even a beginner can use it very easily without any trouble.
 But I will say Arduino IDE is bit underwhelming as an IDE, At least by today's standard.
 
-- It doesn't have proper intellisense
-- It doesn't have goto definition/ goto declaration feature
-- No variable renaming
+- It doesn't have proper intellisense.
+- It doesn't have "goto definition" / "goto declaration" feature.
+- No variable renaming.
 - Even though it supports tabs, You can only open files from the same project.
 - No git integration.
 - No custom font support.
@@ -28,7 +28,7 @@ Advantage of the arduin-cli is that you can write code in your favourite text ed
 
 CLI is very small in size (about 7MB). but packs all the major feature of the IDE.
 
-## Install the cli
+## Install the CLI
 
 ### On windows
 
