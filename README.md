@@ -1,6 +1,36 @@
-# Using Arduino CLI on windows 10
+# arduino-cli - Getting started guide
+
+One software that I use very often but absolutely hate is the Arduino IDE.
+
+The UI is simple and non-intimidating, even a beginner can use it very easily without any trouble.
+But I will say Arduino IDE is bit underwhelming as an IDE, At least by today's standard.
+
+- It doesn't have proper intellisense
+- It doesn't have goto definition/ goto declaration feature
+- No variable renaming
+- Even though it supports tabs, You can only open files from the same project.
+- No git integration.
+- No custom font support.
+- Indentation is using 2 spaces only and no way to control it.
+- Most of all, NO DARK THEME. (I know we can tweak the theme little bit but it always looked imperfect).
+
+I can go on about the reasons to hate Arduino IDE.
+
+Over time the Arduino team has added some nice features to the IDE but the development experience is same. You can feel that its a software from the 2000s.
+
+There were some attempts like Arduino extension for VS Code and plarformIO
+PlatformIO has a different code structure so if you share your project online, Beginners will have a hard time recreating your project.
+For the Arduino extension to work, You need to have the Arduino IDE already installed in your system. I felt it like a "hacky" setup.
+
+About a year ago, Arduino launched arduino-cli, their CLI tool written in google's go programing language is powering Arduino Create Web Editor.
+
+Advantage of the arduin-cli is that you can write code in your favourite text editor and compile and upload the code to the specified board using the CLI tool.
+
+CLI is very small in size (about 7MB). but packs all the major feature of the IDE.
 
 ## Install the cli
+
+### On windows
 
 1. Download the cli tool from [here](https://arduino.github.io/arduino-cli/installation/)
 
